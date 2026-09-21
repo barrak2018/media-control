@@ -1,0 +1,33 @@
+{
+  "settings": {
+    "text_engine": {
+      "label": "Text engine",
+      "description": "How the rotated label is pre-rendered.",
+      "imagemagick": "ImageMagick",
+      "pillow": "Python Pillow",
+      "none": "None (no text)"
+    },
+    "bar_side": {
+      "label": "Bar side",
+      "description": "Which side of the screen this bar is on. Flips the text direction.",
+      "left": "Left",
+      "right": "Right"
+    },
+    "font_name": {
+      "label": "Font",
+      "description": "Font family used to render the rotated text."
+    },
+    "max_label_len": {
+      "label": "Max label length",
+      "description": "Truncate the title or artist to this many characters."
+    },
+    "show_controls": {
+      "label": "Show controls",
+      "description": "Show the previous, play/pause, and next buttons."
+    },
+    "open_commands": {
+      "label": "Open commands",
+      "description": "Map of MPRIS player name to the command launched when clicking the artwork."
+    }
+  }
+}

@@ -1,8 +1,8 @@
-id = "barrak/media-control"
+id = "barrak2018/media-control"
 name = "Media Control"
 version = "0.1.0"
 plugin_api = 24
-author = "barrak"
+author = "barrak2018"
 license = "MIT"
 icon = "player-play"
 dependencies = ["playerctl"]

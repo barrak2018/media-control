@@ -12,7 +12,11 @@ end
 
 local pythonScript = noctalia.pluginDir() and (noctalia.pluginDir() .. "/text.py") or nil
 
-local onSurface = noctalia.getColor("on_surface") or "#E6E1E8"
+local onSurface = ""
+
+if noctalia.getColor then
+  onSurface = noctalia.getColor("on_surface") or "#E6E1E8"
+end
 
 local engine = tostring(noctalia.getConfig("text_engine") or "imagemagick")
 local side = tostring(noctalia.getConfig("bar_side") or "left")
@@ -45,14 +49,14 @@ local textKeys = { title = nil, artist = nil }
 local render
 
 local function log(message)
-  print("[media-control] " .. message)
+  noctalia.log("[media-control] " .. message)
 end
 
 local function hashString(value)
-  local h = 2166136261
+  local h = 5381
 
   for i = 1, #value do
-    h = (h ~ string.byte(value, i)) * 16777619 % 4294967296
+    h = (h * 33 + string.byte(value, i)) % 4294967296
   end
 
   return string.format("%08x", h)
@@ -259,6 +263,18 @@ render = function()
       tooltip = title .. (artist ~= "" and (" - " .. artist) or ""),
       onClick = "openPlayer",
     }))
+  else
+    table.insert(items, ui.box({
+      key = "cover",
+      width = 52,
+      height = 52,
+      radius = 10,
+      fill = "surface",
+      tooltip = title .. (artist ~= "" and (" - " .. artist) or ""),
+      onClick = "openPlayer",
+    }, {
+      ui.glyph({ name = "music", size = 20, color = "on_surface/0.5" }),
+    }))
   end
 
   if textPng.title ~= nil then
@@ -270,7 +286,7 @@ render = function()
   end
 
   if showControls then
-    table.insert(items, ui.row({ key = "controls", gap = 2, align = "center" }, {
+    table.insert(items, ui.column({ key = "controls", gap = 2, align = "center" }, {
       ui.button({
         key = "previous",
         glyph = "caret-left-filled",

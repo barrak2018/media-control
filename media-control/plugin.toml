@@ -1,7 +1,7 @@
 id = "barrak2018/media-control"
 name = "Media Control"
 version = "0.1.0"
-plugin_api = 24
+plugin_api = 31
 author = "barrak2018"
 license = "MIT"
 icon = "player-play"
